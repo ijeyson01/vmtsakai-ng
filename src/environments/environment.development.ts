@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    vmtDevApiUrl: 'https://ffbc-190-63-184-46.ngrok-free.app',
+    vmtDevApiUrl: 'https://8777-45-236-141-96.ngrok-free.app',
     pathAutetication: '/UsuarioAutenticacion/GetUsuarioAutentication'
 };
