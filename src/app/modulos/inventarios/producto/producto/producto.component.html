@@ -3,11 +3,11 @@
 	<div class="col-12">
 		<div class="text-900 font-bold text-6xl mb-4 text-left">Producto</div>
 		<div class="card">
-			<h5>Lista de clientes</h5>
+			<h5>Lista de productos</h5>
 			<p-table [value]="productos" [loading]="loading">
 				<ng-template pTemplate="caption">
 					<div class="flex justify-content-between flex-column sm:flex-row">
-						<button pButton label="Nuevo cliente" class="p-button mb-2" icon="pi pi-plus" (click)="dialogNuevoCliente()"></button>
+						<button pButton label="Nuevo producto" class="p-button mb-2" icon="pi pi-plus" (click)="dialogNuevoCliente()"></button>
 						<span class="p-input-icon-left mb-2">
 							<i class="pi pi-search"></i>
 							<input pInputText type="text" #filter placeholder="Buscar cliente" class="w-full"/>
@@ -67,7 +67,7 @@
 							
 						</td>
 						<td>
-							{{ producto.prodUltPrecio }}
+							{{ producto.prodUltPrecio | currency}}
 						</td>
 						<td>
 							{{ producto.categoriaDesripcion }}
