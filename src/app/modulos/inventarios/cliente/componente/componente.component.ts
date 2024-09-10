@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
@@ -10,25 +10,20 @@ import { DialogclienteComponent } from './dialogcliente/dialogcliente.component'
   styles: ``,
   providers: [MessageService, ConfirmationService]
 })
-export class ComponenteComponent implements OnInit {
+export class ComponenteComponent implements OnInit, AfterViewInit {
 
   constructor(public layoutService: LayoutService, private productService: ProductService, private messageService: MessageService) {}
+  loading: boolean = false;
+  
+  ngAfterViewInit(): void {
+    
+  }
   
   activityValues: number[] = [0, 100];
   
   @ViewChild('dialogoCliente') dialogoCliente: DialogclienteComponent; 
   
-  clientes: any[] = [
-    {
-      nombre: 'Bootcampt VmtDev',
-      identificacion: '1234567890',
-      fechaIngreso: '2024-08-18',
-      estatus: {
-        label: 'Activo',
-        value: 'qualified'
-      },
-    }
-  ];
+  clientes: any[] =  [];
   
   statuses = [
     { label: 'Inactivo', value: 'unqualified' },
@@ -36,7 +31,12 @@ export class ComponenteComponent implements OnInit {
   ];
   
   ngOnInit(): void {
+
+
+    
   }
+
+
 
   dialogNuevoCliente(){
     this.dialogoCliente.visibleClient = true;
