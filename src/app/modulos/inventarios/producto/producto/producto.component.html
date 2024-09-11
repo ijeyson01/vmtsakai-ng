@@ -10,7 +10,7 @@
 						<button pButton label="Nuevo producto" class="p-button mb-2" icon="pi pi-plus" (click)="dialogNuevoCliente()"></button>
 						<span class="p-input-icon-left mb-2">
 							<i class="pi pi-search"></i>
-							<input pInputText type="text" #filter placeholder="Buscar cliente" class="w-full"/>
+							<input pInputText type="text" name="filtro" #filter placeholder="Buscar cliente" class="w-full"/>
 						</span>
 					</div>
 				</ng-template>
@@ -79,7 +79,7 @@
 							<span [class]="'customer-badge status-' + producto.estadoId == '1' ? 'qualified' : 'unqualified'">{{ producto.estadoDescripcion }}</span>
 						</td>
 						<td>
-							<p-button class="m-2" type="button" icon="pi pi-pencil"></p-button>
+							<p-button class="m-2" type="button" icon="pi pi-pencil" (click)="editarProducto(producto)" ></p-button>
 							<p-button class="m-2" severity="danger" type="button" icon="pi pi-trash"></p-button>
 						</td>
 					</tr>
@@ -98,4 +98,5 @@
 		</div>
 	</div>
 </div>
-<app-dialogcliente #dialogoProducto></app-dialogcliente>
+<app-dialogcliente #dialogoProducto (datosProducto)="guardarProducto($event)"></app-dialogcliente>
+<p-toast position="top-left"></p-toast>
