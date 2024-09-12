@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Dialog } from 'primeng/dialog';
+import { AccionApi } from 'src/app/datasource/accionapienum';
 
 @Component({
   selector: 'app-dialogcliente',
@@ -16,6 +17,10 @@ export class DialogproductoComponent {
   @Output() 
   datosProducto = new EventEmitter<any>();
 
+  esNuevo: boolean;
+  dataGuardar: any;
+
+  idProducto: any = null;
   nombre: string;
   precio: number;
   categoria: string;
@@ -37,18 +42,12 @@ export class DialogproductoComponent {
   ]
 
   guardar() {
-    let dataGuardar = {
-      nombre: this.nombre,
-      precio: this.precio,
-      categoria: this.categoria,
-      empresa: this.empresa,
-      proveedor: this.proveedor,
-      estatus: this.estatus.value
-    }
-    this.datosProducto.emit(dataGuardar);
+    this.dataGuardar = this.regDataBase(AccionApi.GUARDAR);
+    this.datosProducto.emit(this.dataGuardar);
   }
 
   abrir() {
+      this.idProducto = null;
       this.nombre = '';
       this.precio = 0.00;
       this.categoria = '';
@@ -57,6 +56,23 @@ export class DialogproductoComponent {
       this.estatus = '';
   }
 
+  actualizar() {
+    this.dataGuardar = this.regDataBase(AccionApi.ACTUALIZAR);
+    this.datosProducto.emit(this.dataGuardar);
+  }
+
+  regDataBase(accionApi: AccionApi) {
+    let dataGuardar = {
+      accion: accionApi,
+      nombre: this.nombre,
+      precio: this.precio,
+      categoria: this.categoria,
+      empresa: this.empresa,
+      proveedor: this.proveedor,
+      estatus: this.estatus.value
+    }
+    return dataGuardar;
+  }
   
 
 }

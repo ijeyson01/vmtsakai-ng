@@ -79,8 +79,8 @@
 							<span [class]="'customer-badge status-' + producto.estadoId == '1' ? 'qualified' : 'unqualified'">{{ producto.estadoDescripcion }}</span>
 						</td>
 						<td>
-							<p-button class="m-2" type="button" icon="pi pi-pencil" (click)="editarProducto(producto)" ></p-button>
-							<p-button class="m-2" severity="danger" type="button" icon="pi pi-trash"></p-button>
+							<button pButton class="m-2" type="button" icon="pi pi-pencil" (click)="editarProducto(producto)" ></button>
+							<button pButton class="m-2 severity-danger" severity="danger" type="button" icon="pi pi-trash"></button>
 						</td>
 					</tr>
 				</ng-template>

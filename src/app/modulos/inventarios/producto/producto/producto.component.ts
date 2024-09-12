@@ -5,6 +5,7 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { DialogproductoComponent } from './dialogproducto/dialogproducto.component';
 import { ProductosService } from 'src/app/services/productos.service';
 import { CategoriaEnum } from 'src/app/datasource/categoriaenum';
+import { AccionApi } from 'src/app/datasource/accionapienum';
 
 @Component({
   selector: 'app-componente',
@@ -57,6 +58,7 @@ export class ProductoComponent implements OnInit, AfterViewInit {
   dialogNuevoCliente() {
     this.dialogoCliente.visibleClient = true;
     this.dialogoCliente.abrir();
+    this.dialogoCliente.esNuevo = true;
   }
 
   cargarProductos(resp: any) {
@@ -67,22 +69,28 @@ export class ProductoComponent implements OnInit, AfterViewInit {
     this.loading = true;
     let datoMantenimientoProducto = this.defineDataGuardar(dataProducto);
 
-    let mantenimientoProdRq: any = {
-      Usuario: 'user',
-      Ip: '0.0.0.0',
-      Modulo: 1,
-      Operacion: "PUT",
-      Data: datoMantenimientoProducto
-    }
-    /*this.productoService.mantenimientoProductos(mantenimientoProdRq).subscribe({
-      next: (resp) => {
-        this.productos = [];
-        this.consultar();
-      },
-      error: (error) => {
+    if(dataProducto.accion == AccionApi.GUARDAR) {
 
+      let mantenimientoProdRq: any = {
+        Modulo: 1,
+        Operacion: "PUT",
+        Data: datoMantenimientoProducto
       }
-    })*/
+      /*this.productoService.mantenimientoProductos(mantenimientoProdRq).subscribe({
+        next: (resp) => {
+          this.productos = [];
+          this.consultar();
+        },
+        error: (error) => {
+  
+        }
+      })*/
+    } 
+
+    if(dataProducto.accion === AccionApi.ACTUALIZAR) {
+      
+    }
+
 
       this.messageService.add({severity:'success', summary:'Notificación VMTDev Bootcamp', detail:'Guardado correctamente'});
       this.loading = false;
@@ -164,6 +172,6 @@ export class ProductoComponent implements OnInit, AfterViewInit {
 
   editarProducto(registro: any) {
     this.dialogoCliente.visibleClient = true;
-    this.dialogoCliente.nombre = registro.nombre;
+    this.dialogoCliente.nombre = registro.prodDescripcion;
   }
 }

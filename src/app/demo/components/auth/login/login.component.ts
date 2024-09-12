@@ -31,11 +31,9 @@ export class LoginComponent {
         private changeDetector: ChangeDetectorRef) { }
 
     login() {
-        let dataLogin: any = { opcionQuery: 'login', dataQuery: this.usuario, dataDobleQuery: this.password };
+        let dataLogin: any = { opcionQuery: '', dataFirstQuery: this.usuario, dataSecondQuery: this.password };
  
         let loginRequest: any = {
-            user:'',
-            ip: '0.0.0.0',
             data: JSON.stringify(dataLogin)
         }
 
