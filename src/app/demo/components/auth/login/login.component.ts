@@ -36,14 +36,15 @@ export class LoginComponent {
         let loginRequest: any = {
             data: JSON.stringify(dataLogin)
         }
+        this.afterLoginService.dataAfterLogin('');
 
-        this.authService.login(loginRequest).subscribe({
+       /* this.authService.login(loginRequest).subscribe({
             next: (resp) => {
                 if(resp.codigo === '000'){
                     this.afterLoginService.dataAfterLogin(resp);
-                    this.changeDetector.detectChanges();
+                    this.changeDetector.detectChanges();*/
                     this.router.navigate(['/vmtdev/home']);
-               } else {
+              /* } else {
                 alert(JSON.stringify(resp));
                }
             },

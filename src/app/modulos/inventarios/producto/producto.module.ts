@@ -12,6 +12,8 @@ import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { FindcategoriaModule } from "../../../shared/findcategoria/findcategoria.module";
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { ToastModule } from 'primeng/toast';
     DividerModule,
     InputTextModule,
     FormsModule,
-    ToastModule
-  ]
+    ToastModule,
+    InputGroupModule,
+    FindcategoriaModule
+]
 })
 export class ProductoModule { }

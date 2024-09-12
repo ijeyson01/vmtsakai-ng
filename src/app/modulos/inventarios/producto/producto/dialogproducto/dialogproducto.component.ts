@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Dialog } from 'primeng/dialog';
 import { AccionApi } from 'src/app/datasource/accionapienum';
+import { FindcategoriaComponent } from 'src/app/shared/findcategoria/findcategoria.component';
 
 @Component({
   selector: 'app-dialogcliente',
@@ -9,7 +10,11 @@ import { AccionApi } from 'src/app/datasource/accionapienum';
 })
 export class DialogproductoComponent {
 
+  constructor(private changeDetector: ChangeDetectorRef) {}
+
   @ViewChild(Dialog) dialogoGenerico: Dialog;
+
+  @ViewChild(FindcategoriaComponent) categoriaComponente: FindcategoriaComponent;
 
   @Input()
   registro: any;
@@ -23,7 +28,7 @@ export class DialogproductoComponent {
   idProducto: any = null;
   nombre: string;
   precio: number;
-  categoria: string;
+  categoria: any;
   empresa: string;
   proveedor: string;
   estatus: any;
@@ -72,6 +77,16 @@ export class DialogproductoComponent {
       estatus: this.estatus.value
     }
     return dataGuardar;
+  }
+
+  mostrarCateogria() {
+    this.categoriaComponente.mostrarCategorias = true;
+  }
+
+  fijarCategoria() {
+    this.categoria = this.categoriaComponente.categoriaSeleccionada.valor;
+    this.categoriaComponente.dialogoCategoria.close(this.categoria);
+    this.changeDetector.detach();
   }
   
 

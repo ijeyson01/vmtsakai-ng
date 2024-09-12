@@ -1,5 +1,5 @@
 <p-dialog #dialogoGenerico [header]="'Información del Producto'" [(visible)]="visibleClient" [modal]="true" showEffect="fade"
-    [style]="{width: '35vw', height: '80%'}">
+    [style]="{ height: '80%'}">
     <div class="flex align-items-center gap-3 mb-3">
         <label for="nombreCliente" class="font-semibold w-6rem">Nombre</label>
         <input pInputText [(ngModel)]="nombre" id="nombreCliente" class="flex-auto" name="nombre" autocomplete="off" />
@@ -10,11 +10,14 @@
     </div>
     <div class="flex align-items-center gap-3 mb-3">
         <label for="identificacionCliente" class="font-semibold w-6rem">Categor&iacute;a</label>
-        <input pInputText id="identificacionCliente" [(ngModel)]="categoria" class="flex-auto" autocomplete="off" name="categoria" />
+        <p-inputGroup>
+            <input [(ngModel)]="categoria" [disabled]="true" pInputText placeholder="Seleccione su categoría" />
+            <button type="button" pButton icon="pi pi-search"  class="p-button" (click)="mostrarCateogria()"></button>
+        </p-inputGroup>
     </div>
     <div class="flex align-items-center gap-3 mb-3">
         <label for="identificacionCliente" class="font-semibold w-6rem">Empresa</label>
-        <input pInputText id="identificacionCliente" [(ngModel)]="empresa" class="flex-auto" autocomplete="off" name="empresa"/>
+        <input pInputText id="identificacionCliente" [(ngModel)]="empresa" class="flex-auto" autocomplete="off" name="categoria" />
     </div>
     <div class="flex align-items-center gap-3 mb-3">
         <label for="identificacionCliente" class="font-semibold w-6rem">Proveedor</label>
@@ -31,3 +34,4 @@
         <button pButton label="Cancelar" class="p-button-outlined m-2"></button>
     </div>
 </p-dialog>
+<app-findcategoria (seleccionarCategoria)="fijarCategoria()"></app-findcategoria>
