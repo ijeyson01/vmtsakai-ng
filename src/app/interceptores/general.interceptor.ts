@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 export class GeneralInterceptor implements HttpInterceptor {
   constructor() { }
   // EL INTERCEPTOR DE CLASE SE IMPLEMENTA EN EL USINGCLASS DEL app.module.ts
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let valorRq = request.clone(
       {
         // CARGA DE DATOS PARA EL HEADER DE UNA PETICIÓN
@@ -17,7 +17,7 @@ export class GeneralInterceptor implements HttpInterceptor {
         body: {
           // ...request : representa al body original, garantiza que la 
           // información original se mantenga y no sea sustituida
-          ...request,
+          ...request.body,
           Ip: '0.0.0.0',
           Usuario: localStorage.getItem('userLoger') == null 
           ? 'ULog'

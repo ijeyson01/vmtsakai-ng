@@ -94,6 +94,7 @@ export class ProductoComponent implements OnInit, AfterViewInit {
 
       this.messageService.add({severity:'success', summary:'Notificación VMTDev Bootcamp', detail:'Guardado correctamente'});
       this.loading = false;
+      this.dialogoCliente.visibleClient = false;
   }
 
   defineDataGuardar(dataProducto: any): any {
@@ -101,8 +102,8 @@ export class ProductoComponent implements OnInit, AfterViewInit {
     let productoObject = {
       "prodDescripcion": dataProducto.nombre,
       "prodUltPrecio": dataProducto.precio,
-      "categoriaId": CategoriaEnum.Computacion,
-      "categoriaDesripcion": dataProducto.categoria,
+      "categoriaId": dataProducto.categoria.id,
+      "categoriaDesripcion": dataProducto.categoria.valor,
       "empresaId": 1,
       "empresaDescripcion": dataProducto.empresa,
       "proveedorId": 1,

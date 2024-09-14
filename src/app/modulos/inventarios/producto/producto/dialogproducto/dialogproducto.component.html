@@ -17,7 +17,10 @@
     </div>
     <div class="flex align-items-center gap-3 mb-3">
         <label for="identificacionCliente" class="font-semibold w-6rem">Empresa</label>
-        <input pInputText id="identificacionCliente" [(ngModel)]="empresa" class="flex-auto" autocomplete="off" name="categoria" />
+        <p-inputGroup>
+            <input [(ngModel)]="empresa" [disabled]="true" pInputText placeholder="Seleccione su empresa" />
+            <button type="button" pButton icon="pi pi-search"  class="p-button" (click)="mostrarEmpresa()"></button>
+        </p-inputGroup>
     </div>
     <div class="flex align-items-center gap-3 mb-3">
         <label for="identificacionCliente" class="font-semibold w-6rem">Proveedor</label>
@@ -35,3 +38,4 @@
     </div>
 </p-dialog>
 <app-findcategoria (seleccionarCategoria)="fijarCategoria()"></app-findcategoria>
+<app-findempresa (selecionarEmpresa)="fijarEmpresa()"></app-findempresa>

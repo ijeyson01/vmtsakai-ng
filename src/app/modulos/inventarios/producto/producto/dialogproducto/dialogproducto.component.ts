@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, Output, ViewChild } 
 import { Dialog } from 'primeng/dialog';
 import { AccionApi } from 'src/app/datasource/accionapienum';
 import { FindcategoriaComponent } from 'src/app/shared/findcategoria/findcategoria.component';
+import { FindempresaComponent } from 'src/app/shared/findempresa/findempresa.component';
 
 @Component({
   selector: 'app-dialogcliente',
@@ -15,6 +16,8 @@ export class DialogproductoComponent {
   @ViewChild(Dialog) dialogoGenerico: Dialog;
 
   @ViewChild(FindcategoriaComponent) categoriaComponente: FindcategoriaComponent;
+
+  @ViewChild(FindempresaComponent) empresaComponet: FindempresaComponent;
 
   @Input()
   registro: any;
@@ -32,6 +35,9 @@ export class DialogproductoComponent {
   empresa: string;
   proveedor: string;
   estatus: any;
+
+  categoriaData: any;
+  empresaData: any;
 
   visibleClient: boolean = false;
 
@@ -71,7 +77,7 @@ export class DialogproductoComponent {
       accion: accionApi,
       nombre: this.nombre,
       precio: this.precio,
-      categoria: this.categoria,
+      categoria: this.categoriaData,
       empresa: this.empresa,
       proveedor: this.proveedor,
       estatus: this.estatus.value
@@ -83,10 +89,22 @@ export class DialogproductoComponent {
     this.categoriaComponente.mostrarCategorias = true;
   }
 
+  mostrarEmpresa() {
+    this.empresaComponet.mostrarFindEmpresas = true;
+  }
+
   fijarCategoria() {
     this.categoria = this.categoriaComponente.categoriaSeleccionada.valor;
+    this.categoriaData = this.categoriaComponente.categoriaSeleccionada;
     this.categoriaComponente.dialogoCategoria.close(this.categoria);
-    this.changeDetector.detach();
+    this.changeDetector.detectChanges();
+  }
+
+  fijarEmpresa() {
+    this.empresa = this.empresaComponet.empresaSeleccionada.id;
+    this.empresaData = this.empresaComponet.empresaSeleccionada;
+    this.empresaComponet.dialogoEmpresa.close();
+    this.changeDetector.detectChanges();
   }
   
 
